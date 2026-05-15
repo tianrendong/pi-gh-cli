@@ -1,0 +1,31 @@
+{
+  "name": "pi-gh-cli",
+  "version": "0.1.0",
+  "description": "Structured GitHub CLI tools for Pi agents",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "github",
+    "gh",
+    "github-cli",
+    "agent"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "extensions",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  }
+}
