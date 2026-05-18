@@ -1,6 +1,6 @@
 {
   "name": "pi-gh-cli",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Structured GitHub CLI tools for Pi agents",
   "keywords": [
     "pi-package",
@@ -11,6 +11,14 @@
     "agent"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tianrendong/pi-gh-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tianrendong/pi-gh-cli/issues"
+  },
+  "homepage": "https://github.com/tianrendong/pi-gh-cli#readme",
   "type": "module",
   "files": [
     "extensions",
