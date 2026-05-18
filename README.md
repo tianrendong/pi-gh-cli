@@ -55,8 +55,9 @@ Each tool returns:
 - Argument arrays, no shell quoting.
 - Defaults to `gh --json` fields where available; pass `fields=` to override.
 - Tools never request interactive confirmation. State-changing actions run non-interactively when invoked.
+- Prompt-prone actions validate required args or pass blank bodies/notes rather than opening editors.
 - Destructive actions (`delete`) auto-pass `--yes`; caller intent gates tool invocation.
-- Output truncates to Pi defaults: 2000 lines or 50KB. Full output saved to a temp file when truncated.
+- Each `gh` process has a bounded timeout. Full output saved to a temp file when truncated.
 - Bodies/notes/secrets accept `bodyFile` / `notesFile` to avoid shell quoting and accidental logging.
 
 ## Agent usage patterns

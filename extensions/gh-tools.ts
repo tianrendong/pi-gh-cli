@@ -14,11 +14,12 @@ import { Text } from "@earendil-works/pi-tui";
 import { Type, type Static } from "typebox";
 
 const COMMON_TIMEOUT_MS = 30_000;
-const WATCH_TIMEOUT_MS = 15 * 60_000;
 const COMMON_REPO_HELP = "Repository in [HOST/]OWNER/REPO format. Defaults to current gh/git context.";
 
 process.env.GH_PROMPT_DISABLED = "1";
 process.env.GH_NO_UPDATE_NOTIFIER = "1";
+process.env.GIT_TERMINAL_PROMPT = "0";
+process.env.GCM_INTERACTIVE = "Never";
 const JSON_HELP = "Comma-separated gh --json fields. Defaults chosen from gh docs for agent-friendly output.";
 
 const ghIssueActions = ["list", "view", "create", "comment", "edit", "close", "reopen"] as const;
@@ -745,6 +746,7 @@ export default function (pi: ExtensionAPI): void {
 				case "create":
 					await ensureNonInteractive(ctx, params, `gh repo create ${params.name ?? ""}`);
 					if (!params.name) throw new Error("name is required for repo create");
+					if (!params.visibility) throw new Error("visibility is required for repo create to avoid gh prompts");
 					args.push(params.name);
 					if (params.description) args.push("--description", params.description);
 					if (params.homepage) args.push("--homepage", params.homepage);
@@ -847,7 +849,7 @@ export default function (pi: ExtensionAPI): void {
 				nextSuggested.push("For failure debugging pass logFailed=true; for full log pass log=true");
 			}
 			const result = await execGh(pi, ctx, args, {
-				timeout: params.action === "watch" ? WATCH_TIMEOUT_MS : COMMON_TIMEOUT_MS,
+				timeout: COMMON_TIMEOUT_MS,
 				mode: params.log || params.logFailed || params.action === "watch" ? "tail" : "head",
 			});
 			enrichEnvelope(result, { action: params.action, repo: params.repo, nextSuggested });
