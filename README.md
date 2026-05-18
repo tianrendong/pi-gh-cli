@@ -54,8 +54,8 @@ Each tool returns:
 
 - Argument arrays, no shell quoting.
 - Defaults to `gh --json` fields where available; pass `fields=` to override.
-- State-changing actions require interactive confirmation, or `confirm=true` in non-interactive mode.
-- Destructive actions (`delete`) auto-pass `--yes`; still gated by confirmation.
+- Tools never request interactive confirmation. State-changing actions run non-interactively when invoked.
+- Destructive actions (`delete`) auto-pass `--yes`; caller intent gates tool invocation.
 - Output truncates to Pi defaults: 2000 lines or 50KB. Full output saved to a temp file when truncated.
 - Bodies/notes/secrets accept `bodyFile` / `notesFile` to avoid shell quoting and accidental logging.
 
@@ -65,7 +65,7 @@ Read before write:
 
 1. `gh_pr` `action=view` with `fields=number,title,isDraft,reviewDecision,mergeStateStatus,statusCheckRollup,headRefOid`
 2. Decide based on returned state.
-3. `gh_pr` `action=merge` with `matchHeadCommit=<headRefOid>` and `confirm=true`.
+3. `gh_pr` `action=merge` with `mergeMethod=squash` and `matchHeadCommit=<headRefOid>`.
 
 Always pass `repo=OWNER/REPO` for mutations to avoid current-directory inference.
 
