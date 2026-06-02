@@ -1,6 +1,6 @@
 {
   "name": "pi-gh-cli",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Structured GitHub CLI tools for Pi agents",
   "keywords": [
     "pi-package",
