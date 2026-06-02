@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/tianrendong/pi-gh-cli.git"
+    "url": "git+https://github.com/tianrendong/pi-gh-cli.git"
   },
   "bugs": {
     "url": "https://github.com/tianrendong/pi-gh-cli/issues"
